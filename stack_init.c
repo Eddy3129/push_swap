@@ -37,6 +37,19 @@ long	ft_atol(const char *s)
 	return (result * sign);
 }
 
+void	set_index(t_stack_node *stack)
+{
+	int		i;
+
+	i = 0;
+	while (stack)
+	{
+		stack->index = i;
+		stack = stack->next;
+		i++;
+	}
+}
+
 void	init_stack(t_stack_node **stack, char **av)
 {
 	int		i;
@@ -61,4 +74,5 @@ void	init_stack(t_stack_node **stack, char **av)
 		ft_addtostack(stack, value);
 		i++;
 	}
+	set_index(*stack);
 }

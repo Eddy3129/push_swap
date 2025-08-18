@@ -29,6 +29,12 @@ typedef struct s_stack_node
 
 int				check_valid_int(char *s);
 int				check_valid_set(char **set);
+int				is_sorted(t_stack_node *stack);
+int				find_min(t_stack_node *stack);
+int				find_max(t_stack_node *stack);
+t_stack_node	*find_min_node(t_stack_node *stack);
+t_stack_node	*find_max_node(t_stack_node *stack);
+void			set_index(t_stack_node *stack);
 long			ft_atol(const char *s);
 void			init_stack(t_stack_node **stack, char **av);
 void			print_stack(t_stack_node *stack);
