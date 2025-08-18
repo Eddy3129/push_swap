@@ -40,26 +40,18 @@ static char	**parse_args(int ac, char **av, int *should_free)
 	return (args);
 }
 
-static void	test_operations(t_stack_node **a, t_stack_node **b)
+static void	test_operations(t_stack_node **a)
 {
-	ft_printf("Before push:\n");
-	ft_printf("a:\n");
+	ft_printf("Before rotate:\n");
 	print_stack(*a);
-	ft_printf("b:\n");
-	print_stack(*b);
-	push(b, a);
-	push(b, a);
-	ft_printf("After push:\n");
-	ft_printf("a:\n");
+	rev_rotate(a);
+	ft_printf("After rev_rotate:\n");
 	print_stack(*a);
-	ft_printf("b:\n");
-	print_stack(*b);
 }
 
 int	main(int ac, char **av)
 {
 	t_stack_node	*a;
-	t_stack_node	*b;
 	char			**args;
 	int				should_free;
 
@@ -74,8 +66,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	init_stack(&a, args);
-	b = NULL;
-	test_operations(&a, &b);
+	test_operations(&a);
 	ft_freestack(&a);
 	if (should_free)
 		free(args);

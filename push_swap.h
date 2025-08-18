@@ -39,5 +39,6 @@ void			ft_freestack(t_stack_node **stack);
 void			swap(t_stack_node **head);
 void			push(t_stack_node **dest, t_stack_node **src);
 void			rotate(t_stack_node **stack);
+void			rev_rotate(t_stack_node **stack);
 
 #endif
