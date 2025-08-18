@@ -12,13 +12,13 @@
 
 #include "push_swap.h"
 
-void	swap(t_stack_node **head)
+int	swap(t_stack_node **head)
 {
 	t_stack_node	*first;
 	t_stack_node	*second;
 
 	if (!*head || !(*head)->next)
-		return ;
+		return (0);
 	first = *head;
 	second = (*head)->next;
 	first->prev = second;
@@ -28,14 +28,15 @@ void	swap(t_stack_node **head)
 	if (second->next)
 		(second->next)->prev = first;
 	*head = second;
+	return (1);
 }
 
-void	push(t_stack_node **dest, t_stack_node **src)
+int	push(t_stack_node **dest, t_stack_node **src)
 {
 	t_stack_node	*node_to_push;
 
 	if (!*src)
-		return ;
+		return (0);
 	node_to_push = *src;
 	*src = (*src)->next;
 	if (*src)
@@ -45,15 +46,16 @@ void	push(t_stack_node **dest, t_stack_node **src)
 	if (*dest)
 		(*dest)->prev = node_to_push;
 	*dest = node_to_push;
+	return (1);
 }
 
-void	rotate(t_stack_node **stack)
+int	rotate(t_stack_node **stack)
 {
 	t_stack_node	*first;
 	t_stack_node	*last;
 
 	if (!*stack || !(*stack)->next)
-		return ;
+		return (0);
 	first = *stack;
 	last = *stack;
 	while (last->next)
@@ -63,15 +65,16 @@ void	rotate(t_stack_node **stack)
 	first->next = NULL;
 	first->prev = last;
 	last->next = first;
+	return (1);
 }
 
-void	rev_rotate(t_stack_node **stack)
+int	rev_rotate(t_stack_node **stack)
 {
 	t_stack_node	*first;
 	t_stack_node	*last;
 
 	if (!*stack || !(*stack)->next)
-		return ;
+		return (0);
 	first = *stack;
 	last = *stack;
 	while (last->next)
@@ -81,4 +84,5 @@ void	rev_rotate(t_stack_node **stack)
 	first->prev = last;
 	(*stack) = last;
 	(*stack)->prev = NULL;
+	return (1);
 }
