@@ -50,13 +50,12 @@ void	init_stack(t_stack_node **stack, char **av)
 		if (value > INT_MAX || value < INT_MIN)
 		{
 			ft_freestack(stack);
-			ft_printf("Error values exceeded\n");
+			ft_putendl_fd("Error", 2);
 			return ;
 		}
 		if (!check_dup(value, av, i))
 		{
 			ft_freestack(stack);
-			ft_printf("Error values duplicated\n");
 			return ;
 		}
 		ft_addtostack(stack, value);

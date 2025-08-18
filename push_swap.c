@@ -60,7 +60,6 @@ int	main(int ac, char **av)
 	args = parse_args(ac, av, &should_free);
 	if (!check_valid_set(args))
 	{
-		ft_printf("Error, invalid values\n");
 		if (should_free)
 			free(args);
 		return (1);

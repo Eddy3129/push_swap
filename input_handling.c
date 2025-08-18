@@ -38,7 +38,10 @@ int	check_dup(int num, char **set, int index)
 	while (set[i])
 	{
 		if (num == ft_atol(set[i]) && i != index)
+		{
+			ft_putendl_fd("Error", 2);
 			return (0);
+		}
 		i++;
 	}
 	return (1);
@@ -52,7 +55,10 @@ int	check_valid_set(char **set)
 	while (set[i])
 	{
 		if (!check_valid_int(set[i]))
+		{
+			ft_putendl_fd("Error", 2);
 			return (0);
+		}
 		i++;
 	}
 	return (1);
