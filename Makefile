@@ -11,7 +11,7 @@ LIBFTDIR = libft
 FT_PRINTFDIR = ft_printf
 
 # Source files
-SRCS = push_swap.c input_handling.c stack_init.c stack_utils.c
+SRCS = push_swap.c input_handling.c stack_init.c stack_utils.c stack_controls.c
 
 OBJS = $(SRCS:.c=.o)
 
