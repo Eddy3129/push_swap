@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eddlim <eddlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 13:51:48 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/18 13:51:48 by marvin           ###   ########.fr       */
+/*   Updated: 2025/08/19 13:23:35 by eddlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_stack_node
 {
 	int					num;
 	int					index;
+	int					above_median;
 	struct s_stack_node	*target;
 	struct s_stack_node	*next;
 	struct s_stack_node	*prev;
@@ -34,6 +35,9 @@ int				find_min(t_stack_node *stack);
 int				find_max(t_stack_node *stack);
 t_stack_node	*find_min_node(t_stack_node *stack);
 t_stack_node	*find_max_node(t_stack_node *stack);
+void			sort_three(t_stack_node **stack);
+void			sort_small(t_stack_node **a, t_stack_node **b);
+int				stack_size(t_stack_node *stack);
 void			set_index(t_stack_node *stack);
 long			ft_atol(const char *s);
 void			init_stack(t_stack_node **stack, char **av);

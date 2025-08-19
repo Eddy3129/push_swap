@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eddlim <eddlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 13:51:54 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/18 13:51:54 by marvin           ###   ########.fr       */
+/*   Updated: 2025/08/19 13:25:58 by eddlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,20 @@ long	ft_atol(const char *s)
 
 void	set_index(t_stack_node *stack)
 {
-	int		i;
+	int				i;
+	int				stack_len;
 
 	i = 0;
+	if (!stack)
+		return ;
+	stack_len = stack_size(stack);
 	while (stack)
 	{
 		stack->index = i;
+		if (i > stack_len / 2)
+			stack->above_median = 0;
+		else
+			stack->above_median = 1;
 		stack = stack->next;
 		i++;
 	}
