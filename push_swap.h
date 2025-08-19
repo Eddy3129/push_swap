@@ -6,7 +6,7 @@
 /*   By: eddlim <eddlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 13:51:48 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/19 13:23:35 by eddlim           ###   ########.fr       */
+/*   Updated: 2025/08/19 19:38:16 by eddlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_stack_node
 {
 	int					num;
 	int					index;
+	int					cost;
 	int					above_median;
 	struct s_stack_node	*target;
 	struct s_stack_node	*next;
@@ -37,6 +38,8 @@ t_stack_node	*find_min_node(t_stack_node *stack);
 t_stack_node	*find_max_node(t_stack_node *stack);
 void			sort_three(t_stack_node **stack);
 void			sort_small(t_stack_node **a, t_stack_node **b);
+void			sort_stack(t_stack_node **a, t_stack_node **b);
+t_stack_node	*find_cheapest_in_chunk(t_stack_node *a, int start_index, int end_index);
 int				stack_size(t_stack_node *stack);
 void			set_index(t_stack_node *stack);
 long			ft_atol(const char *s);

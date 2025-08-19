@@ -6,7 +6,7 @@
 /*   By: eddlim <eddlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 13:51:43 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/19 15:11:33 by eddlim           ###   ########.fr       */
+/*   Updated: 2025/08/19 18:30:50 by eddlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,10 @@ int	main(int ac, char **av)
 			sa(&a);
 		else if (size == 3)
 			sort_three(&a);
-		else if (size <= 100)
+		else if (size <= 10)
 			sort_small(&a, &b);
+		else
+			sort_stack(&a, &b);
 	}
 	print_stack(a);
 	ft_freestack(&a);
