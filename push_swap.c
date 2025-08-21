@@ -6,19 +6,27 @@
 /*   By: eddlim <eddlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 13:51:43 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/19 18:30:50 by eddlim           ###   ########.fr       */
+/*   Updated: 2025/08/21 19:10:00 by eddlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_stack(t_stack_node *stack)
+static void	sort_logic(t_stack_node **a, t_stack_node **b)
 {
-	while (stack)
-	{
-		ft_printf("%d\n", stack->num);
-		stack = stack->next;
-	}
+	int	size;
+
+	size = stack_size(*a);
+	if (is_sorted(*a))
+		return ;
+	if (size == 2)
+		sa(a);
+	else if (size == 3)
+		sort_three(a);
+	else if (size <= 10)
+		sort_small(a, b);
+	else
+		sort_stack(a, b);
 }
 
 static char	**parse_args(int ac, char **av, int *should_free)
@@ -39,22 +47,12 @@ static char	**parse_args(int ac, char **av, int *should_free)
 	return (args);
 }
 
-// static void	test_operations(t_stack_node **a)
-// {
-// 	ft_printf("Before rotate:\n");
-// 	print_stack(*a);
-// 	rev_rotate(a);
-// 	ft_printf("After rev_rotate:\n");
-// 	print_stack(*a);
-// }
-
 int	main(int ac, char **av)
 {
 	t_stack_node	*a;
 	t_stack_node	*b;
 	char			**args;
 	int				should_free;
-	int				size;
 
 	if (ac < 2)
 		return (1);
@@ -67,19 +65,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	init_stack(&a, args);
-	size = stack_size(a);
-	if (!is_sorted(a))
-	{
-		if (size == 2)
-			sa(&a);
-		else if (size == 3)
-			sort_three(&a);
-		else if (size <= 10)
-			sort_small(&a, &b);
-		else
-			sort_stack(&a, &b);
-	}
-	print_stack(a);
+	sort_logic(&a, &b);
 	ft_freestack(&a);
 	ft_freestack(&b);
 	if (should_free)

@@ -6,56 +6,83 @@
 /*   By: eddlim <eddlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 13:51:54 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/19 13:25:58 by eddlim           ###   ########.fr       */
+/*   Updated: 2025/08/21 19:15:00 by eddlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-long	ft_atol(const char *s)
+static void	sort_temp_array(int *arr, int size)
 {
-	long	result;
-	int		sign;
-	int		i;
+	int	i;
+	int	j;
+	int	temp;
 
-	result = 0;
-	sign = 1;
 	i = 0;
-	while (s[i] == ' ' || (s[i] >= 9 && s[i] <= 13))
-		i++;
-	if (s[i] == '-' || s[i] == '+')
+	while (i < size - 1)
 	{
-		if (s[i] == '-')
-			sign = -1;
+		j = 0;
+		while (j < size - i - 1)
+		{
+			if (arr[j] > arr[j + 1])
+			{
+				temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+			}
+			j++;
+		}
 		i++;
 	}
-	while (ft_isdigit(s[i]))
-	{
-		result = result * 10 + (s[i] - '0');
-		i++;
-	}
-	return (result * sign);
 }
 
-void	set_index(t_stack_node *stack)
+static void	fill_indices(t_stack_node **stack, int *arr)
 {
-	int				i;
-	int				stack_len;
+	t_stack_node	*current;
+	int			i;
+	int			size;
 
-	i = 0;
-	if (!stack)
-		return ;
-	stack_len = stack_size(stack);
-	while (stack)
+	current = *stack;
+	size = stack_size(*stack);
+	while (current)
 	{
-		stack->index = i;
-		if (i > stack_len / 2)
-			stack->above_median = 0;
-		else
-			stack->above_median = 1;
-		stack = stack->next;
-		i++;
+		i = 0;
+		while (i < size)
+		{
+			if (current->num == arr[i])
+			{
+				current->index = i;
+				break ;
+			}
+			i++;
+		}
+		current = current->next;
 	}
+}
+
+void	assign_indices(t_stack_node **stack)
+{
+	int				*temp_arr;
+	int				size;
+	int				i;
+	t_stack_node	*current;
+
+	size = stack_size(*stack);
+	if (size == 0)
+		return ;
+	temp_arr = (int *)malloc(sizeof(int) * size);
+	if (!temp_arr)
+		return ;
+	current = *stack;
+	i = 0;
+	while (current)
+	{
+		temp_arr[i++] = current->num;
+		current = current->next;
+	}
+	sort_temp_array(temp_arr, size);
+	fill_indices(stack, temp_arr);
+	free(temp_arr);
 }
 
 void	init_stack(t_stack_node **stack, char **av)
@@ -82,5 +109,5 @@ void	init_stack(t_stack_node **stack, char **av)
 		ft_addtostack(stack, value);
 		i++;
 	}
-	set_index(*stack);
+	assign_indices(stack);
 }
